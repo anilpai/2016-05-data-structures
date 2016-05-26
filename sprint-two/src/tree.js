@@ -1,28 +1,35 @@
 var Tree = function(value){
   var newTree = {};
   newTree.value = value;
-
   // your code here
-  newTree.children = null;  // fix me
-
+  newTree.children = [];  // fix me
+  _.extend(newTree, treeMethods);
   return newTree;
 };
-
-
-
-
 
 var treeMethods = {};
 
 treeMethods.addChild = function(value){
-
+  var node = Tree(value);
+  this.children.push(node);
 };
 
 treeMethods.contains = function(target){
+  // Recursion brings Depth First Search(DFS) Implementation
+  var found = (this.value === target);
 
+  _.each(this.children, function(child){
+    if(found === false){
+      found = child.contains(target);
+    }
+  });
+  return found;
 };
+
 
 
 /*
  * Complexity: What is the time complexity of the above functions?
+ * addChild : O(1)
+ * contains : O(log n)
  */
