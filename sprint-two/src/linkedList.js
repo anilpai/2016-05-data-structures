@@ -22,14 +22,16 @@ var LinkedList = function(){
   };
 
   list.contains = function(target){
+    var flag = false;
     list.a = list.head;
-    while(list.a !== null){
+    while(list.a !== undefined ){
         if(list.a.value === target){
-          return true;
+          flag = true;
+          return flag;
         }
         list.a = list.a.next;
     }
-    return false;
+    return flag;
   };
 
   return list;
